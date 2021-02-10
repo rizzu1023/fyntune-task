@@ -12,23 +12,13 @@
     <title>Blog Application</title>
 </head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Blog Application</a>
+    <a class="navbar-brand" href="/">Blog Application</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-        {{--        <ul class="navbar-nav mr-auto">--}}
-        {{--            <li class="nav-item active">--}}
-        {{--                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>--}}
-        {{--            </li>--}}
-        {{--            <li class="nav-item">--}}
-        {{--                <a class="nav-link" href="#">Features</a>--}}
-        {{--            </li>--}}
-        {{--            <li class="nav-item">--}}
-        {{--                <a class="nav-link" href="#">Pricing</a>--}}
-        {{--            </li>--}}
-        {{--        </ul>--}}
+
         <div class="mr-auto"></div>
         <a href="/login" class="mr-3">Login</a>
         <a href="/register ">Register</a>
@@ -69,7 +59,7 @@
 {{--            <span class="text-muted">Published At :</span>--}}
             <span class="text-muted">Category : {{ $blog->category}}</span>
             <p class="card-text mt-2">{{ \Illuminate\Support\Str::limit($blog->description, 200, $end='...') }}</p>
-            <a href="#">Read more</a>
+            <a href="/blog/{{$blog->id}}">Read more</a>
             <span class="text-muted float-right"> {{date('d-M-Y h:i A',strtotime($blog->created_at))}}</span>
         </div>
     </div>

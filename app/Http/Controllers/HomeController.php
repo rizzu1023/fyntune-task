@@ -11,16 +11,21 @@ class HomeController extends Controller
 
         $blogs = Blog::query();
 
-        $selected_category = 'ALL';
+        $selected_category = 'All';
         if(request()->has('category')){
             if(request('category') != 'All') {
                 $blogs->where('category', request('category'));
                 $selected_category = request('category');
             }
         }
-        $blogs = $blogs->paginate(3);
+        $blogs = $blogs->latest()->paginate(3);
         $categories = Blog::select('category')->distinct()->get();
-        return view('welcome',compact('blogs','categories','selected_category'));
+        return view('blog-index',compact('blogs','categories','selected_category'));
+    }
+
+    public function show($blog_id){
+        $blog = Blog::find($blog_id);
+        return view('blog-show',compact('blog'));
     }
 
 

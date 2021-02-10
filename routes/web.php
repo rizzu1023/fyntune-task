@@ -20,6 +20,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 
 Route::get('/',[\App\Http\Controllers\HomeController::class,'index']);
+Route::get('/blog/{blog_id}',[\App\Http\Controllers\HomeController::class,'show']);
 
 
 Route::group(['prefix' => 'admin','middleware' => ['auth']],function(){
