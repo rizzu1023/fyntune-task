@@ -24,7 +24,7 @@ class BlogFactory extends Factory
         return [
             'title' => $this->faker->sentence,
             'category' => $this->faker->randomElement($array = array('Sports','Travel','Music','LifeStyle','Food','Fashion','Fitness')),
-            'description' => $this->faker->paragraph,
+            'description' => $this->faker->text($maxNbChars = 500),
         ];
     }
 }

@@ -19,7 +19,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 
-Route::get('/', function () {return view('welcome');});
+Route::get('/',[\App\Http\Controllers\HomeController::class,'index']);
 
 
 Route::group(['prefix' => 'admin','middleware' => ['auth']],function(){
