@@ -22,7 +22,9 @@ class BlogFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->sentence,
+            'category' => $this->faker->randomElement($array = array('Sports','Travel','Music','LifeStyle','Food','Fashion','Fitness')),
+            'description' => $this->faker->paragraph,
         ];
     }
 }

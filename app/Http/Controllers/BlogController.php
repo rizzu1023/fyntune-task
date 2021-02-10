@@ -10,21 +10,22 @@ class BlogController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        //
+        $blogs = Blog::all();
+        return view('Admin.Blog.blog-index',compact('blogs'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
-        //
+        return view('Admin.Blog.blog-create');
     }
 
     /**
@@ -42,22 +43,22 @@ class BlogController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Blog  $blog
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show(Blog $blog)
     {
-        //
+        return view('Admin.Blog.blog-show',compact('blog'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Blog  $blog
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(Blog $blog)
     {
-        //
+        return view('Admin.Blog.blog-edit',compact('blog'));
     }
 
     /**
@@ -76,10 +77,11 @@ class BlogController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Blog  $blog
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Blog $blog)
     {
-        //
+        $blog->delete();
+        return back()->with('message','Blog Successfully Deleted');
     }
 }
