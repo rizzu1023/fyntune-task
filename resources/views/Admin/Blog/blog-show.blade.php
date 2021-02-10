@@ -4,14 +4,12 @@
     <div class="container mt-4">
         <div class="card">
             <div class="card-body">
-                <form method="POST" action="{{ Route('blogs.store') }}">
-                    @csrf
                     <div class="row">
                         <div class="col-3">
                             <label for="exampleFormControlInput1">Title</label>
                         </div>
                         <div class="col-9">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Title" required name="title">
+                            <span>{{$blog['title']}}</span>
                         </div>
                     </div>
                     <div class="row mt-4">
@@ -19,25 +17,30 @@
                             <label for="exampleFormControlInput2">Category</label>
                         </div>
                         <div class="col-9">
-                            <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Category" required name="category">
+                            <span>{{$blog['category']}}</span>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="row mt-4">
                             <div class="col-3">
-                                <label for="exampleFormControlTextarea1">Description</label>
-
+                                <span for="exampleFormControlTextarea1">Description</span>
                             </div>
                             <div class="col-9">
-                                <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3" required=""></textarea>
-
+                                <span>{{$blog['description']}}</span>
                             </div>
                         </div>
                     </div>
+                <div class="row my-4">
+                    <div class="col-3">
+                        <span>Created At</span>
+                    </div>
+                    <div class="col-9">
+                        <span>{{ date('d-M-Y',strtotime($blog['created_at'])) }}</span>
+                    </div>
+                </div>
                     <a type="button" href="/admin/blogs" class="btn btn-success float">Back</a>
-                    <button type="submit" class="btn btn-primary float-right">Add Blog</button>
-                </form>
+                    <a  class="btn btn-primary float-right" href="/admin/blogs/{{$blog->id}}/edit">Edit Blog</a>
             </div>
         </div>
     </div>

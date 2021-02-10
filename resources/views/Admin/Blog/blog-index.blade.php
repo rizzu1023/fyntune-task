@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container mt-4">
+        @include('Admin.layouts.message')
         <div class="card">
             <div class="card-header">
                 Blogs
@@ -29,7 +30,13 @@
                         <td>
                             <a type="button" class="btn btn-sm btn-primary" href="/admin/blogs/{{$blog->id}}">Show</a>
                             <a type="button" class="btn btn-sm btn-success" href="/admin/blogs/{{$blog->id}}/edit">Edit</a>
-                            <button type="button" class="btn btn-sm btn-danger">Delete</button>
+{{--                            <button type="button" class="btn btn-sm btn-danger">Delete</button>--}}
+                            <form style="display:inline-block" method="POST"
+                                  action="/admin/blogs/{{$blog->id}}">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this team?')"> Delete </button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach

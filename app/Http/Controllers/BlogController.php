@@ -32,11 +32,13 @@ class BlogController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->validate_data($request);
+        Blog::create($data);
+        return redirect()->route('blogs.index')->with('message','Blog Successfully Added');
     }
 
     /**
@@ -66,11 +68,13 @@ class BlogController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Blog  $blog
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Blog $blog)
     {
-        //
+        $data = $this->validate_data($request);
+        $blog->update($data);
+        return redirect()->route('blogs.index')->with('message','Blog Successfully Updated');
     }
 
     /**
@@ -83,5 +87,13 @@ class BlogController extends Controller
     {
         $blog->delete();
         return back()->with('message','Blog Successfully Deleted');
+    }
+
+    public function validate_data(Request $request){
+        return $request->validate([
+            'title' => 'required|string',
+            'category' => 'required|string',
+            'description' => 'required|string',
+        ]);
     }
 }
