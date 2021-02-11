@@ -45,7 +45,6 @@
             <h6 class="mt-5">Category : <b>{{$blog->category}}</b></h6>
             <p class="mt-5">{{$blog->description}}</p>
             <span class="text-muted">Published At :  {{date('d-M-Y h:i A',strtotime($blog->created_at))}}</span>
-
         </div>
     </div>
 

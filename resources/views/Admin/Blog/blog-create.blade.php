@@ -4,9 +4,17 @@
     <div class="container mt-4">
         <div class="card">
             <div class="card-body">
-                <form method="POST" action="{{ Route('blogs.store') }}">
+                <form method="POST" action="{{ Route('blogs.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
+                        <div class="col-3">
+                            <label for="exampleFormControlInput0">Image</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="file" class="form-control" id="exampleFormControlInput0" placeholder="Title"  name="image_path">
+                        </div>
+                    </div>
+                    <div class="row mt-4">
                         <div class="col-3">
                             <label for="exampleFormControlInput1">Title</label>
                         </div>

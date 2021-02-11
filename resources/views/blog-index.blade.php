@@ -54,13 +54,20 @@
     </form>
     @foreach($blogs as $blog)
     <div class="card mb-3" style="border-radius: 0">
-        <div class="card-body">
-            <h4 class="card-title">{{$blog->title}}</h4>
-{{--            <span class="text-muted">Published At :</span>--}}
-            <span class="text-muted">Category : {{ $blog->category}}</span>
-            <p class="card-text mt-2">{{ \Illuminate\Support\Str::limit($blog->description, 200, $end='...') }}</p>
-            <a href="/blog/{{$blog->id}}">Read more</a>
-            <span class="text-muted float-right"> {{date('d-M-Y h:i A',strtotime($blog->created_at))}}</span>
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img class="img-fluid w-100" height="auto" src="{{ asset('blog/images/'.$blog['image_path']) }}" alt="blog-image">
+
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h4 class="card-title">{{$blog->title}}</h4>
+                    <span class="text-muted">Category : {{ $blog->category}}</span>
+                    <p class="card-text mt-2">{{ \Illuminate\Support\Str::limit($blog->description, 200, $end='...') }}</p>
+                    <a href="/blog/{{$blog->id}}">Read more</a>
+                    <span class="text-muted float-right"> {{date('d-M-Y h:i A',strtotime($blog->created_at))}}</span>
+                </div>
+            </div>
         </div>
     </div>
 @endforeach

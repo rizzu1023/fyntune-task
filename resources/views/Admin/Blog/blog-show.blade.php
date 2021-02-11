@@ -4,6 +4,11 @@
     <div class="container mt-4">
         <div class="card">
             <div class="card-body">
+                    <div class="row p-4">
+                        <div class="col-12">
+                            <img class="img-fluid" height="auto" width="300" src="{{ asset('blog/images/'.$blog['image_path']) }}" alt="blog-image">
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-3">
                             <label for="exampleFormControlInput1">Title</label>

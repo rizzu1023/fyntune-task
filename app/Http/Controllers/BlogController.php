@@ -37,7 +37,21 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         $data = $this->validate_data($request);
-        Blog::create($data);
+
+        if($request->hasFile('image_path')){
+            $imageNameWithExt = $request->file('image_path')->getClientOriginalName();
+            $imageName = time() . '_' .$imageNameWithExt;
+            $request->image_path->move(public_path('blog/images'), $imageName);
+        }
+        else $imageName = 'default.jpg';
+
+        $blog = new Blog;
+        $blog->title = $data['title'];
+        $blog->image_path = $imageName;
+        $blog->category = $data['category'];
+        $blog->description = $data['description'];
+        $blog->save();
+
         return redirect()->route('blogs.index')->with('message','Blog Successfully Added');
     }
 
@@ -94,6 +108,7 @@ class BlogController extends Controller
             'title' => 'required|string',
             'category' => 'required|string',
             'description' => 'required|string',
+            'image_path' => '',
         ]);
     }
 }
