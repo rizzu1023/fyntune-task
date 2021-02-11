@@ -87,7 +87,18 @@ class BlogController extends Controller
     public function update(Request $request, Blog $blog)
     {
         $data = $this->validate_data($request);
-        $blog->update($data);
+        if($request->hasFile('image_path')){
+            $imageNameWithExt = $request->file('image_path')->getClientOriginalName();
+            $imageName = time() . '_' .$imageNameWithExt;
+            $request->image_path->move(public_path('blog/images'), $imageName);
+
+            $blog->image_path = $imageName;
+        }
+
+        $blog->title = $data['title'];
+        $blog->category = $data['category'];
+        $blog->description = $data['description'];
+        $blog->save();
         return redirect()->route('blogs.index')->with('message','Blog Successfully Updated');
     }
 
