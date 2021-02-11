@@ -40,6 +40,8 @@
 
 <div class="container my-5" >
     <div class="card" style="border-radius: 0">
+        <img class="img-fluid w-100" height="auto" src="{{ asset('blog/images/'.$blog['image_path']) }}" alt="blog-image">
+
         <div class="card-body">
             <h4>{{$blog->title}}</h4>
             <h6 class="mt-5">Category : <b>{{$blog->category}}</b></h6>
